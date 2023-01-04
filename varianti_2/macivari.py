@@ -1,6 +1,5 @@
 # შემოიტანე შემთხვევითი რიცხვების წარმოების მოდული
-
-
+import random as r
 
 # მოდულის მუდმივები: ესენი არ შეცვალო, არ გაადადგილო, არაფერი არ უქნა
 # ესენი გამოიყენე, ქვემოთ დასაწერ, chaitsere_sayidlebi-ის ფუნქციის ბლოკში
@@ -51,8 +50,13 @@ def chaitsere_sayidlebi(raodenoba=10):
     მაგალითად:
     ['მაწონი', 'ხაჭო', 'ხაჭო', 'პომიდორი', 'მაწონი']
     """
-    pass
+    sia = []
+    for i in range(raodenoba):
+        produqti = PRODUQTEBI[r.randrange(0,len(PRODUQTEBI))]
+        sia.append(produqti)
 
+    print(sia)
+    return sia
 
 def sheavse_macivari(sayidlebis_sia):
     """
@@ -83,7 +87,14 @@ def sheavse_macivari(sayidlebis_sia):
     (შეიძლება თანმიმდევრობა იყოს სხვანაირი, რადგან ლექსიკონი დაუხარისხებელი
     მონაცემთა ტიპი არის. მაგას მნიშვნელობა არ აქვს)
     """
-    pass
+    data = {}
+    for i in sayidlebis_sia:
+        if data.get(i) is None:
+            data[i] = 1
+        else:
+            data[i] += 1
+
+    return data
 
 
 def gamoakle_nivti(macivari, nivti):
@@ -113,7 +124,11 @@ def gamoakle_nivti(macivari, nivti):
     :param nivti: str სტრიქონი; სტრიქონი რომელიც წარმოადგენს გასაღებს, რომელიც
     შეიძლება ლექსიკონში იყოს ან არ იყოს
     """
-    pass
+    if macivari.get(nivti) is None:
+        print("This item does not exist")
+    else:
+        print(nivti, macivari[nivti])
+        del macivari[nivti]
 
 
 def macivris_shemotsmeba(macivari):
@@ -138,6 +153,7 @@ def macivris_shemotsmeba(macivari):
         'ხაჭო': 2,
         'პომიდორი': 1
     """
-    pass
+    for i in macivari:
+        print(f"{i} : {macivari[i]}")
 
 
