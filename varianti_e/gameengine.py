@@ -1,5 +1,5 @@
 # აქ შემოიტანეთ საჭირო მოდულები
-
+import random as r
 
 MAX_HEALTH = 100
 LOWEST_DAMAGE = 0
@@ -36,7 +36,7 @@ def calculate_damage(lowest_damage=LOWEST_DAMAGE, highest_damage=HIGHEST_DAMAGE)
     HIGHEST_DAMAGE
     :return: int - შედეგად მიღებული შეტევის სიძლიერის რიცხვითი მაჩვენებელი
     """
-    pass
+    return r.randrange(lowest_damage, highest_damage)
 
 
 def make_character():
@@ -54,8 +54,8 @@ def make_character():
 
     :return: dict -  შედეგად შექმნილ ლექსიკონს
     """
-    pass
-
+    new_character = {"health": MAX_HEALTH}
+    return new_character
 
 
 def make_enemy():
@@ -80,7 +80,9 @@ def make_enemy():
 
     :return: dict - შედეგად მიღებული მეწინააღმდეგის ტიპის პერსონაჟს
     """
-    pass
+    enemy = {"health": MAX_HEALTH, "type": CHARACTER_TYPES["ENEMY"],
+             "name": ENEMY_NAMES[r.randrange(0, len(ENEMY_NAMES))]}
+    return enemy
 
 
 def make_player_character(name):
@@ -107,7 +109,9 @@ def make_player_character(name):
     :param name: str - მოთამაშეს პერსონაჟის სასურველი სახელი
     :return: dict - შედეგად მიღებული მოთამაშის ტიპის პერსონაჟს
     """
-    pass
+    player = {"health": MAX_HEALTH, "type": CHARACTER_TYPES["PLAYER"],
+              "name": name}
+    return player
 
 
 def check_health(character):
@@ -119,7 +123,7 @@ def check_health(character):
     :param character: dict - პერსონაჟის ამსახველი ლექსიკონი
     :return: int - პერსონაჟის სიცოცხლის მაჩვენებელი რიცხვი
     """
-    pass
+    return character["health"]
 
 
 def take_damage(character, damage):
@@ -136,7 +140,8 @@ def take_damage(character, damage):
     :param character: dict - დარტყმის მიმღები პერსონაჟის ამსახველი ლექსიკონი
     :param damage: int - დარტყმის სიძლიერის რიცხვითი მაჩვენებლი
     """
-    pass
+
+    character["health"] -= damage if damage > 0 else print("Character is not damaged!")
 
 
 def attack(target):
@@ -150,4 +155,6 @@ def attack(target):
     :param target: dict - სამიზნე პერსონაჟის ამსახველი ლექსიკონი
     :return: int - მიღებული დარტყმის სიძლიერე
     """
-    pass
+    damage = calculate_damage()
+    take_damage(target, damage)
+    return damage

@@ -1,6 +1,7 @@
 # შემოიტანე gameengine მოდული
 import gameengine as game
 
+
 # ამ ფუნქციას გჩუქნით
 def handle_character_gen(player):
     """
@@ -47,7 +48,16 @@ def game_over(player1, player2):
     :return: str - გამარჯვებული მოთამაშის სახელი. სხვა შემთხვევაში
     None
     """
-    pass
+    health1 = game.check_health(player1)
+    health2 = game.check_health(player2)
+    print(f"{player1['name']} health is {health1}")
+    print(f"{player2['name']} health is {health2}")
+    if health2 <= 0:
+        return player1['name']
+    elif health1 <= 0:
+        return player2['name']
+    else:
+        return None
 
 
 # ამ ფუნქციას გჩუქნით
@@ -92,7 +102,7 @@ def main():
             play_game(player1, player2)
             break
 
-        #pve
+        # pve
         if mode == '2':
             player1 = handle_character_gen('Player 1')
             player2 = handle_enemy_gen()

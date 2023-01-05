@@ -1,3 +1,5 @@
+import math
+
 ELEMENTEBI = [
     100,
     2,
@@ -5,7 +7,6 @@ ELEMENTEBI = [
     -100.23,
     9001
 ]
-
 
 """
 0.
@@ -19,6 +20,11 @@ ELEMENTEBI = [
 """
 
 
+def sortList(sia, reverse=False):
+    sia.sort(reverse=reverse)
+    return sia
+
+
 """
 1.
 
@@ -29,6 +35,13 @@ ELEMENTEBI = [
 :param elementi: any - რამე მონაცემი, რომელსაც სიაში ვეძებთ
 :return: int - მოძებნილი ელემენტის ინდექსი
 """
+
+
+def find_element(sia, elementi):
+    try:
+        return sia.index(elementi)
+    except:
+        return None
 
 
 """
@@ -53,6 +66,8 @@ len(sia) = 6
 :return: int - სიის შუა ელემენტის ინდექსქსს
 """
 
+def midle_element(sia):
+    return math.floor((len(sia) - 1) / 2)
 
 """
 3.
@@ -64,6 +79,10 @@ len(sia) = 6
 :return: any - თუ მონაცემი მოიძებნა, სხვა შემთხვევაში None
 """
 
+def remove_middle(sia):
+    middle = midle_element(sia)
+    del sia[middle]
+    return sia
 
 """
 4.
@@ -75,6 +94,14 @@ len(sia) = 6
 :param elementi_1: any - სიაში არსებული ერთი ელემენტი
 :param elementi_2: any - სიაში არსებული მეორე ელემენტი
 """
+def invert_positions(sia,element_1,element_2):
+    index1 = sia.index(element_1)
+    index2 = sia.index(element_2)
+    sia[index1] = element_2
+    sia[index2] = element_1
+    return sia
+
+
 
 
 def main():
@@ -86,23 +113,35 @@ def main():
     # 0. განაცხადე ცვლადი, რომელიც უთითებს ამ მოდულში არსებულ მუდმივას,
     # ELEMENTEBI-ს ასლს
 
+    mudmiva = ELEMENTEBI
+
     # 1. გამოიძახე მე-0 დამხმარე ფუნქცია, არგუმენტად მიაწოდე მე-0 ნაბიჯში
     # განცხადებული ცვლადის სახელი და დახარისხებული სია დაბეჭდე
+
+    print(sortList(mudmiva))
 
     # 2. გამოიძახე მე-0 დამხმარე ფუნქცია, არგუმენტად მიაწოდე მე-0 ნაბიჯში
     # განცხადებული ცვლადის სახელი და საჭირო გაჩუმებითი არგუმენტები, რათა
     # უკუღმად დახარისხდეს დახარისხებული სია დაბეჭდე
-
+    print(sortList(mudmiva, reverse=True))
     # 3. გამოიძახე მე-1 დამხმარე ფუნქცია. არგუმენტად მიაწოდე მე-0 ნაბიჯში
     # შექმნილი სია და მეორე არგუმენტად რამე ელემენტი. ფუნქციის მიერ
     # დაბრუნებული შედეგი შეინახე და კონსოლში დაბეჭდე
-
+    elem = find_element(mudmiva,2)
+    print(elem)
     # 4. გამოიძახე მე-3 დამხმარე ფუნქცია. არგუმენტად მიაოწდე მე-0 ნაბიჯში
     # შექმნილი სია.
-
+    remove_middle(mudmiva)
     # 5. გამოიძახე მე-4 დამხმარე ფუნქცია. არგუმენტებად მიაოწდე მე-0 ნაბიჯში
     # შექმნილი სია და მასში არსებული ორი ელემენტი. შემდეგ კი კონსოლშI დაბეწDეთ
     # შედეგად შეცვლილი იგივე სია.
+    print(invert_positions(mudmiva,9001,2))
 
+
+# print(sortList([3,5,8,9,41,6,2],True))
+#print(find_element([3, 5, 8, 9, 41, 6, 2], -69))
+#print(midle_element([3, 5, 8, 9, 41, 6, 2]))
+#print(remove_middle([3, 5, 8, 9, 41, 6, 2]))
+#print(invert_positions([3, 5, 8, 9, 41, 6, 2],5,9))
 
 main()
