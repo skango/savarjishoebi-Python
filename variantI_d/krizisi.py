@@ -31,6 +31,18 @@ CASES = [
 None - იმ შემთხვევაში, თუ არგუმენტად მიწოდებული სტრიქონი
 არ არის მოდულის გლობალური მუდმივის, CASES-ის, ნაწილი
 """
+def verify(user_input):
+    if user_input in CASES:
+        function_to_call = CASES.index(user_input)
+        parameter = int(input(f"{user_input} , შეიყვანე {user_input.split(' ')[0][:-1]}"))
+        return gd.detect_funcntion_type(function_to_call, parameter)
+    else:
+        return None
+
+
+
+
+
 
 
 def main():
@@ -50,6 +62,15 @@ def main():
     #   ბ. თუ წინა ნაბიჯის შედეგად მიღებული მონაცემი არ არის None,
     #   დაუბეჭდე მომხმარბეელს და განაგრძე იტერაცია მანამ,
     #   სანამ მომხაბრელი არ შეიტანს ციკლიდან გამოსასვლეელ სტრიქონს
+
+    while(True):
+        user_input = input("რით შემიძლია დაგეხმარო?")
+        answer = verify(user_input)
+        if answer is None:
+            print("ამით ვერ დაგეხმარები :( Chat GPT-ს კითხე")
+        else:
+            print(f"აჰა გასაგებია, პასუხი: {answer}")
+
 
     # 1. ციკლის წარმატებულად დამთავრების შედეგად დაემშვიდობე მომხმარებელს
 

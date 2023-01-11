@@ -1,6 +1,6 @@
 GASAGHEBEBI = ['h', 'e', 'l', 'l', 'o']
 
-MNISHVNELOBEBI = [0, 1, 2, 3, 4, 5]
+MNISHVNELOBEBI = [0, 1, 2, 3, 4]
 
 MENU = {
     'საჭმელები': {
@@ -75,6 +75,15 @@ MENU = {
 :parameter mnishvnelobebi: list - შესაქმენი ლექსიკონის მნიშვნელობები
 :return: dict - შედეგად შექმნილი ლექსიკონი
 """
+def create_dict(gasaghebebi,mnishvnelobebi):
+    if len(gasaghebebi) == len(mnishvnelobebi):
+        json = {}
+        for i in range(len(gasaghebebi)):
+            json[gasaghebebi[i]] = mnishvnelobebi[i]
+
+        return json
+    else:
+        raise Exception("Wrong Input!")
 
 """
 1.
@@ -87,7 +96,8 @@ MENU = {
 :param gasaghebi: str - leqsikoni-ს გასაღები, რასაც მნიშვნელობად უნდა
 მივანიჭოთ menu
 """
-
+def add_menu(leqsikoni,menu,gasaghebi):
+    leqsikoni[gasaghebi] = menu
 
 """
 2.
@@ -106,6 +116,10 @@ MENU = {
 
 :return: float
 """
+def calculate_price(menu,kategoria,qve_kategoria,kerdzi,raodenoba):
+    food = menu[kategoria][qve_kategoria][kerdzi]
+    return raodenoba * food["ფასი"]
+
 
 
 def main():
@@ -116,6 +130,8 @@ def main():
     # არგუმენტებად მიაწოდე ამ მოდულში არსებული მუდმივები,
     # GASAGEHEBEBI და MNISHVNELOBEBI
 
+    j = MENU #create_dict(GASAGHEBEBI, MNISHVNELOBEBI)
+
     # 1. მე-1 დამხმარე ფუნქცია გამოიძახე; არგუემენტებად მიაწოდე შემდეგი
     # მონაცემები:
     #   - წინა ნაბიჯის შედეგად მიღებული ლექსიკონი
@@ -123,17 +139,24 @@ def main():
     #   - მე-0 ნაბიჯში არსებული რომელიმე გასაღები (შენი არჩევანია, რომელიც
     #   გინდა აირჩიე. მომხმარებელს არ შეატანინო ეს, უბრალოდ შენით დაწერე)
 
+    #add_menu(j, MENU, j["h"])
+
+    #ragaca = j["h"]
+
+
     # 2. მე-0 ნაბიჯში მიღებული ლექსიკონში, წინა, მე-1 ნაბიჯში მიწოდებული
     # ბოლო პოზიციური არგუმენტით მითითებული მნიშვნელობა ცალკე ცვლადში შეინახე;
     # გაიხსენე, აქ წინა ნაბიჯში ჩასვი MENU
 
     # 3. მომხმარებელს სთხოვე კატეგორია
-
+    kategoria = input("კატეგორია:")
     # 4. მომხმარებელს სთხოვე ქვეკატეგორია
-
+    qve_kategoria = input("ქვეკატეგორია:")
     # 5. მომხმარებელს სთხოვე კერძი
-
+    kerdzi = input("კერძი:")
     # 6. მომხმარებელს სთხოვე რაოდენობა
+
+    raodenoba = int(input("რაოდენობა:"))
 
     # 7. გამოიძახე მე-2, დამხმარე ფუნქცია და არგუმენტებად მიაწოდე
     # შემდეგი მონაცემები:
@@ -142,7 +165,10 @@ def main():
     #   - მე-4 ნაბიჯში შენახული ცვლადი
     #   - მე-5 ნაბიჯში შენახული ცვლადი
 
+    fasi = calculate_price(j,kategoria,qve_kategoria,kerdzi,raodenoba)
+
     # 8. წინა ნაბიჯის შედეგად მიღებული ანგარიში კონსოლში დაბეჭდე
 
+    print(fasi)
 
 main()
