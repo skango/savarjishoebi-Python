@@ -1,5 +1,5 @@
 # აქ შემოიტანე sityvtamoduli. თუ გსურს, რამე სხვა ფსევდონიმი მიანიჭე
-
+import sityvtamoduli as s
 
 # ქვემოთ ჩამოთვლილ მუდმივები არ შეცვალოთ
 
@@ -65,7 +65,8 @@ def pasuxis_shemotsmeba(pasuxebi, adgili, sityva):
     # ამ ხაზს გაძლევთ
     STSORI_PASUXEBI[adgili] = True
     # დანარჩენი დასაწერი აქვთ
-    pass
+    return pasuxebi[adgili] == sityva
+
 
 
 def dabechde_kitxvebi(leqsikoni):
@@ -83,7 +84,8 @@ def dabechde_kitxvebi(leqsikoni):
         4: 'ზღაპარში კონკიას შესახებ, მასში გადაქცეული გოგრა'
     }
     """
-    pass
+    for i in leqsikoni:
+        print(f"{i}) {leqsikoni[i]}")
 
 
 def milocva():
@@ -91,7 +93,7 @@ def milocva():
     მომხმარებელს ულოცავს კროსვორდის წარმატებულად შევსებას.
     რამე მოლოცვას ბეჭდავს კონსოლში
     """
-    pass
+    print("gilocaav shen moige datvis ...")
 
 
 def main():
@@ -119,33 +121,35 @@ def main():
 
         # 1. მომხმარებელს შეატანინე წინადადება, გასაგები სტრიქონი დაუწერე
         # კონსოლში; ცვლადში შეინახე
-
+        winadadeba = input("შეიტანე წინადადება (ვიცი რომ გშია მაგრამ აქ ვერ შეჭამ რესტორნის დავალებაში გადადი)")
         # 2. გამოიძახე sityvtamoduli-ში გაწერილი tsinadadebis_damushaveba
         # ფუნქცია, არგუმენტად მიაწოდე, წინა მე-1 ნაბიჯის შედეგად მიღებული
         # სტრიქონი; შედეგად მიღებული სია შეინახე ცვლადში
-
+        sia = s.tsinadadebis_damushaveba(winadadeba)
         # 3. წინა, მე-2 ნაბიჯის შედეგად მიღებული სიაზე მოახდინე იტერაცია.
         # თიო იტერაციაზე:
+        for i in sia:
 
             # ა. დაამუშავე შენახული სიტყვა sityvtamoduli-ში გაწერილი
             # sityvis_damushaveba ფუნქციის გამოძახებით
-
+            s.sityvis_damushaveba(i)
 
             # ბ. sityvtamoduli-დან გამოიძახე sityvis_analizi ფუნქცია, და დაბეჭდე
             # ანალიზის შედეგი
+            print(s.sityvis_analizi(i))
 
 
             # გ. მომხმარებელს ჰკითხე, რა ადგილას სსურს სიტყვის ჩაწერა, ადგილი უნდა იყოს
             # მთელრიცხვა ტიპის მონაცემი
-
-
+            adgili = int(input("რა ადგილას გინდა ჩაწერო სიტყვა?"))
+            sityva = input("სიტყვა:")
             # დ. შეამოწმე პასუხები, pasuxis_shemotsmeba ფუნქციის გამოძახებით;
             # შედეგი შეინახე ცვლადში
-
+            shemotsemba = pasuxis_shemotsmeba(SITYVEBI_PASUXEBI,adgili,sityva)
 
             # ე. კონსოლში გამოიტანე მომხმარელის მიერ შეტანილი სიტყვა და ადგილი,
             # და წინა ფუნქციის გამოძახდების შედეგი - სწორი იყო თუ არა
-
+            print(f"{sityva} {adgili} {shemotsemba}")
 
         # ამას ხელი არ ახლო, მე მიწერია, რათა მთელი პროგრამა ამუშავდეს,
         # როგორც ველოდეიბ, ისე
@@ -154,6 +158,7 @@ def main():
 
     # 7. თუ ციკლიდან გამოვედით, ესე იგი კროსვორდი შევასრულეთ; მომხმარებელს
     # მივულოცოთ! გამოიძახეთ ფუნქცია milocva
+    milocva()
 
 
 main()

@@ -16,7 +16,7 @@ def tsinadadebis_damushaveba(tsinadadeba):
     :param tsinadadeba: str, სტრიქონი, რომელიც წარმოადგენს წინადადებას
     :return: list, სია: თითო ელემენტი წინადადების შემადგენელი სიტყვა არის
     """
-    pass
+    return tsinadadeba.split(" ")
 
 
 def sityvis_damushaveba(striqoni):
@@ -31,7 +31,7 @@ def sityvis_damushaveba(striqoni):
     :param striqoni: str სტრიქონი
     :return: str დამუშავებული სტრიქონი
     """
-    pass
+    low = striqoni.lower()
 
 
 def sityvis_analizi(sityva):
@@ -67,4 +67,12 @@ def sityvis_analizi(sityva):
         'ი': [6]
     }
     """
-    pass
+    leqsikoni = {}
+    for i in range(len(sityva)):
+        aso = sityva[i]
+        if leqsikoni.get(aso) == None:
+            leqsikoni[aso] = [i]
+        else:
+            leqsikoni[aso].append(i)
+
+    return leqsikoni
